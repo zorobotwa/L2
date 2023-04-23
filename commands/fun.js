@@ -44,3 +44,17 @@ async(Void, citel, text) => {
      )
      //---------------------------------------------------------------------------
  
+     //---------------------------------------------------------------------------
+cmd({
+        pattern: "ق",
+        desc: "Sends fact in chat.",
+        category: "fun",
+        filename: __filename,
+    },
+    async(Void, citel, text) => {
+        const { data } = await axios.get(`https://api.banghasan.com/quran/format/json/acak`)
+        return citel.reply(`**`)   
+    }
+
+)
+    //---------------------------------------------------------------------------
