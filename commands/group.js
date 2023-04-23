@@ -29,7 +29,7 @@ cmd({
             let result = text.split(" ")[0].split("https://chat.whatsapp.com/")[1];
             await Void.groupAcceptInvite(result)
                 .then((res) => citel.reply("🟩تم دخلت"))
-                .catch((err) => citel.reply("Error in Joining Group"));
+                .catch((err) => citel.reply("خطأ لم استطع الانضمام"));
 
         }
     )
@@ -91,7 +91,7 @@ cmd({
         citel.reply(`*❀╎رسلت لك للــخاص ${tlang().greet}*`);
         await Void.sendMessage(`${citel.sender}`, {
             image: log0,
-            caption: `*جروب دعم بوت رايزل*\n*الرابط:* https://chat.whatsapp.com/EZe0MlgU0xo8GXtkCpqS0M`,
+            caption: `*جروب دعم بوت زيرو تو*\n*الرابط:* https://chat.whatsapp.com/LAASmxox5c75HILkYXe2AX`,
         });
 
     }
@@ -459,7 +459,7 @@ cmd({
             }
             let disc = citel.sender.substring(3, 7);
             let textr = '';
-            textr += `*هلا ${citel.pushName}`;
+            textr += `*هلا ${tlang().greet} ,🌟 ${citel.pushName}∆${disc}'s* يكسب\n\n`;
             let ttms = `${userq.xp}` / 8;
             textr += `*⚡البايو:* ${bioo}\n*🟢يكسب*: ${userq.xp} / ${Levels.xpFor(
     userq.level + 1
