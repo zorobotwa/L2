@@ -461,7 +461,7 @@ cmd({
             let textr = '';
             textr += `*هلا ${tlang().greet} ,🌟 ${citel.pushName}∆${disc}'s* يكسب\n\n`;
             let ttms = `${userq.xp}` / 8;
-            textr += `*⚡البايو:* ${bioo}\n*🟢يكسب*: ${userq.xp} / ${Levels.xpFor(
+            textr += `*🌟رولي*: ${role}\n*🟢يكسب*: ${userq.xp} / ${Levels.xpFor(
     userq.level + 1
   )}\n*🏡المستوى*: ${userq.level}\n*عدد الرسائل:*- ${ttms}`;
             try {

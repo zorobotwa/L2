@@ -52,7 +52,7 @@ Secktor.cmd({
                     .locale('id')
                 const date = moment.tz('asia/karachi').format('DD/MM/YYYY')
                 let total = await sck1.countDocuments()
-                let str = *⺀اوامر بوت رايزل⺀*
+                let str = `*⺀اوامر بوت رايزل⺀*
 ❀╎.بروفايل
 *┇↜⟬ يجيبلك تفاصيلك ⟭*
 ❀╎.رانك
@@ -92,7 +92,7 @@ Secktor.cmd({
 ❀╎.اختصار
 *┇↜⟬ يختصر رابطك ⟭*
 ✯───｢الدعم｣────✯
-｢  https://chat.whatsapp.com/EZe0MlgU0xo8GXtkCpqS0M  ｣
+｢  https://chat.whatsapp.com/LAASmxox5c75HILkYXe2AX  ｣
 ✯──｢منوعات｣───✯
 ❀╎.تطقيم
 *┇↜⟬ يجلبلك تطقيمات ⟭*
@@ -130,13 +130,14 @@ Secktor.cmd({
 ❀╎.كت
 *┇↜⟬ للفعاليات⟭*
 ✯──｢البنك｣───✯
-❀╎.ضف
+❀╎.ضخله
 *┇↜⟬ اضافة اموال للاعضاء ⟭*
-❀╎.جرد
+❀╎.زرف
 *┇↜⟬ اخذ مال من الاعضاء ⟭*
 ❀╎.اموالي
 *┇↜⟬ معرفة مقدار مالك ⟭*
-*⺀───النهايه───⺀*`
+*⺀───النهايه───⺀*
+`
 
                 let buttonMessaged = {
                     image: { url: await botpic() },
@@ -154,13 +155,13 @@ Secktor.cmd({
             pattern: "الدعم",
             desc: "list menu",
             category: "general",
-            react: "🥀"
+            react: "😽"
         },
         async(Void, citel) => {
             const { commands } = require('../lib');
             let str = `
-╭━〘 `𝐑𝐀𝐈𝐙𝐄𝐋 𝐒𝐔𝐏𝐏𝐎𝐑𝐓` 〙━──⊷`
-            str += '' + `*نورتونا*\n*https://chat.whatsapp.com/EZe0MlgU0xo8GXtkCpqS0M*`
+╭━〘 ` +fancytext('RAIZEL-SUPPORT', 58)+ ` 〙━─⊷`
+            str += '' + `*⺀دعم قروب رايزل بوت نورتونا⺀* \nhttps://chat.whatsapp.com/LAASmxox5c75HILkYXe2AX`
             return Void.sendMessage(citel.chat, { image: { url: THUMB_IMAGE }, caption: str ,footer: tlang().footer, headerType: 4 })
         }
     )
