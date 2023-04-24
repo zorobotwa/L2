@@ -92,7 +92,7 @@ Secktor.cmd({
 ❀╎.اختصار
 *┇↜⟬ يختصر رابطك ⟭*
 ✯───｢الدعم｣────✯
-｢  https://chat.whatsapp.com/LAASmxox5c75HILkYXe2AX  ｣
+｢  https://chat.whatsapp.com/EZe0MlgU0xo8GXtkCpqS0M  ｣
 ✯──｢منوعات｣───✯
 ❀╎.تطقيم
 *┇↜⟬ يجلبلك تطقيمات ⟭*
@@ -161,7 +161,7 @@ Secktor.cmd({
             const { commands } = require('../lib');
             let str = `
 ╭━〘 ` +fancytext('RAIZEL-SUPPORT', 58)+ ` 〙━─⊷`
-            str += '' + `*⺀دعم قروب رايزل بوت نورتونا⺀* \nhttps://chat.whatsapp.com/LAASmxox5c75HILkYXe2AX`
+            str += '' + `*⺀دعم قروب رايزل بوت نورتونا⺀* \nhttps://chat.whatsapp.com/EZe0MlgU0xo8GXtkCpqS0M`
             return Void.sendMessage(citel.chat, { image: { url: THUMB_IMAGE }, caption: str ,footer: tlang().footer, headerType: 4 })
         }
     )
