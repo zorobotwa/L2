@@ -55,13 +55,7 @@ cmd({
     },
     async(Void, citel) => {
         let { data } = await axios.get('https://api.github.com/repos/SamPandey001/Secktor-Md')
-        let cap = `Hey ${citel.pushName}\n
-*⭐ Total Stars:* ${data.stargazers_count} stars
-*🍽️ Forks:* ${data.forks_count} forks
-*🍁 Repo:* secktorbot.tech/repo
-*Group:* secktorbot.tech/support
-*Deploy Your Own:*-
- SecktorBot.tech/youtube`
+        let cap = `صلي على رسول الله`
         let buttonMessaged = {
             image: { url: await botpic() },
             caption: cap,
@@ -86,7 +80,7 @@ cmd({
 )
 //---------------------------------------------------------------------------
 cmd({
-        pattern: "بوت",
+        pattern: "اياياققا",
         alias: ["about"],
         desc: "To check bot status",
         category: "general",
