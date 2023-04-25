@@ -4,7 +4,7 @@
  You may not use this file except in compliance with the License.
  It is supplied in the hope that it may be useful.
  * @project_name : Secktor-Md
- * @author : @jayjay-ops <https://github.com/jayjay-ops>
+ * @author : @jayjay-ops <https://gitb.com/jayjay-ops>
  * @modified by : @SamPandey001 <https://github.com/SamPandey001>
  * @description : Secktor,A Multi-functional whatsapp bot.
  * @version 0.0.6
@@ -23,7 +23,7 @@
      */
      //---------------------------------------------------------------------------
  cmd({
-         pattern: "daily",
+         pattern: "راتبي",
          desc: "daily gold.",
          category: "economy",
          filename: __filename,
@@ -37,7 +37,7 @@
             })
             .save());
         let mongoschemas = zerogroup.economy || "false";
-        if (mongoschemas == "false") return citel.reply("*🚦Economy* is not active in current group.");
+        if (mongoschemas == "false") return citel.reply("*البنك لا يـــعـــمل*.");
          if (!citel.isGroup) return citel.reply(tlang().group);
 	const secktor = "secktor"
 	const daily  = await eco.daily(citel.sender, secktor, 2000); //give 500 for daily, can be changed
@@ -45,28 +45,28 @@
             let buttons = [{
                 buttonId: `${prefix}wallet`,
                 buttonText: {
-                    displayText: "Wallet👛",
+                    displayText: "المحفظه",
                 },
                 type: 1,
             },
             {
                 buttonId: `${prefix}Bank`,
                 buttonText: {
-                    displayText: "Bank🏦",
+                    displayText: "البنك",
                 },
                 type: 1,
             },
         ];
-        return await Void.sendButtonText(citel.chat, buttons, `🧧 You already claimed daily for today, come back in ${daily.cdL}🫡`, `${Config.ownername.split(' ')[0]}-Economy
-Version: 0.0.6`, citel);
+        return await Void.sendButtonText(citel.chat, buttons, `طلبت راتبك قبل ارجع بعد ${daily.cdL}🫡`, `${Config.ownername.split(' ')[0]}-البنك
+بنك رايزل`, citel);
 	 } else {
-	 citel.reply(`you claimed daily ${daily.amount} 🪙 for today🎉.`);   
+	 citel.reply(`راتبك نزل ${daily.amount} 🪙 لا عاد تصيح.`);   
 	 }
  }
  )
 
  cmd({
-         pattern: "resetwallet",
+         pattern: "نهب",
          desc: "reset wallet of quoted user.",
          category: "economy",
          filename: __filename,
@@ -86,7 +86,7 @@ Version: 0.0.6`, citel);
 	if(!users) return citel.reply('Please give me user.')
         const balance  = await eco.balance(users, "secktor")
         await eco.deduct(users, "secktor", balance.wallet);
-        return await citel.reply(`⛩️ User: @${users.split('@')[0]} \n *🧧 @${users.split('@')[0]} lost all 🪙 in wallet.*\n_Now live with that poverty.🫡_`,{mentions:[users]})
+        return await citel.reply(`️ العضو: @${users.split('@')[0]} \n * @${users.split('@')[0]} فقدت كل اموالك.*\n_الان بتعيش فقير.🫡_`,{mentions:[users]})
  }
  )
     //---------------------------------------------------------------------------
@@ -197,7 +197,7 @@ default:
 
      //---------------------------------------------------------------------------
      cmd({
-        pattern: "deposit",
+        pattern: "ايداع",
         desc: "deposit gold.",
         category: "economy",
         filename: __filename,
@@ -213,7 +213,7 @@ default:
         let mongoschemas = zerogroup.economy || "false";
         if (mongoschemas == "false") return citel.reply("*🚦Economy* is not active in current group.");
       //  let users = citel.mentionedJid ? citel.mentionedJid[0] : citel.msg.contextInfo.participant || false;
-        if (!text) return citel.reply("Baka!! Provide the 💰amount you want to deposit!");
+        if (!text) return citel.reply("ادخل المبلغ الذي تريد ايداعه");
         let d = parseInt(text)
         const deposit = await eco.deposit(citel.sender, "secktor", d);
         const balance = await eco.balance(citel.sender, "secktor")
@@ -221,14 +221,14 @@ default:
          let buttons = [{
             buttonId: `${prefix}wallet`,
             buttonText: {
-                displayText: "Wallet👛",
+                displayText: "المحفظه",
             },
             type: 1,
         },
         {
             buttonId: `${prefix}Bank`,
             buttonText: {
-                displayText: "Bank🏦",
+                displayText: "البنك",
             },
             type: 1,
         },
@@ -322,7 +322,7 @@ Version: 0.0.6`, citel);
 
      //---------------------------------------------------------------------------
      cmd({
-        pattern: "wallet",
+        pattern: "المحفظه",
         desc: "shows wallet.",
         category: "economy",
         filename: __filename,
@@ -349,13 +349,13 @@ Version: 0.0.6`, citel);
         {
             buttonId: `${prefix}Bank`,
             buttonText: {
-                displayText: "Bank🏦",
+                displayText: "البنك",
             },
             type: 1,
         },
     ];
-    return await Void.sendButtonText(citel.chat, buttons, `*👛 ${citel.pushName}'s Purse:*\n\n_🪙${balance.wallet}_`, `${Config.ownername.split(' ')[0]}-Economy
-Version: 0.0.6`, citel);
+    return await Void.sendButtonText(citel.chat, buttons, `*👛 ${citel.pushName}'محفظة:*\n\n_🪙${balance.wallet}_`, `${Config.ownername.split(' ')[0]}-بنك
+رايزل جورج`, citel);
 
     }
 )
@@ -479,7 +479,7 @@ default:
 
      //---------------------------------------------------------------------------
      cmd({
-        pattern: "withdraw",
+        pattern: "سحب",
         desc: "withdraw money from bank account.",
         category: "economy",
         filename: __filename,
@@ -616,7 +616,7 @@ Version: 0.0.6`, citel);
 
      //---------------------------------------------------------------------------
      cmd({
-        pattern: "slot2",
+        pattern: "فواكه",
         desc: "withdraw money from bank account.",
         category: "economy",
         filename: __filename,
