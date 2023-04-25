@@ -91,7 +91,7 @@ cmd({
         citel.reply(`*❀╎رسلت لك للــخاص ${tlang().greet}*`);
         await Void.sendMessage(`${citel.sender}`, {
             image: log0,
-            caption: `*جروب دعم بوت زيرو تو*\n*الرابط:* https://chat.whatsapp.com/LAASmxox5c75HILkYXe2AX`,
+            caption: `*جروب دعم بوت رايزل*\n*الرابط:* https://chat.whatsapp.com/LAASmxox5c75HILkYXe2AX`,
         });
 
     }
@@ -170,7 +170,7 @@ cmd({
         let textt = `
 ══✪｢منشن جماعي ｣✪══
 
-✪ *الرساله :* ${text ? text : "اعيدت"}\n\n
+✪ *الرساله :* ${text ? text : "صحو النوم"}\n\n
 ✪ *الطالب:* ${citel.pushName} 🔖
 `
         for (let mem of participants) {
