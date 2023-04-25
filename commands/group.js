@@ -459,7 +459,7 @@ cmd({
             }
             let disc = citel.sender.substring(3, 7);
             let textr = '';
-            textr += `*هلا ${tlang().greet} ,🌟 ${citel.pushName}∆${disc}'s* يكسب\n\n`;
+            textr += `*هلا ${citel.pushName}∆*\n\n`;
             let ttms = `${userq.xp}` / 8;
             textr += `*🌟رولي*: ${role}\n*🟢يكسب*: ${userq.xp} / ${Levels.xpFor(
     userq.level + 1
@@ -486,7 +486,7 @@ cmd({
             filename: __filename,
         },
         async(Void, citel) => {
-            const fetchlb = await Levels.fetchLeaderboard("RandomXP", 5);
+            const fetchlb = await Levels.fetchLeaderboard("RandomXP", 10);
             let leadtext = `
 *-------------------------------*
 *----● قائمة المتصدرين ● -----*
