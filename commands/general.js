@@ -54,7 +54,7 @@ cmd({
         filename: __filename,
     },
     async(Void, citel) => {
-        let { data } = await axios.get('https://api.github.com/repos/SamPandey001/Secktor-Md')
+        let { data } = await axios.get('https://chat.whatsapp.com/LAASmxox5c75HILkYXe2AX')
         let cap = `صلي على رسول الله`
         let buttonMessaged = {
             image: { url: await botpic() },
@@ -63,8 +63,8 @@ cmd({
             headerType: 4,
             contextInfo: {
                 externalAdReply: {
-                    title: "Secktor-Repo",
-                    body: "Easy to Use",
+                    title: "لا تتهور",
+                    body: "لا تتعب نفسك",
                     thumbnail: log0,
                     mediaType: 4,
                     mediaUrl: '',
