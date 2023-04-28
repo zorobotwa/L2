@@ -51,7 +51,7 @@ cmd({
                 citel.reply("*جاري صناعة الملصق*");
                 let sticker = new Sticker(media, {
                     pack: pack, // The pack name
-                    author: author, // The author name
+                    author: 𝚁𝙰𝙸𝚉𝙴𝙻 𝙶𝙴𝙾𝚁𝙹𝙴༗, // The author name
                     type: text.includes("--crop" || '-c') ? StickerTypes.CROPPED : StickerTypes.FULL,
                     categories: ["🤩", "🎉"], // The sticker category
                     id: "12345", // The sticker id
@@ -327,7 +327,7 @@ cmd({
             const lvpoints = userq.level;
             var role = "ملك✨";
             if (lvpoints <= 2) {
-                var role = "🏳Citizen";
+                var role = "🏳حيوان منوي";
             } else if (lvpoints <= 4) {
                 var role = "👼طفل";
             } else if (lvpoints <= 6) {
@@ -435,21 +435,21 @@ cmd({
         async(Void, citel, text) => {
             const userq = await Levels.fetch(citel.sender, "RandomXP");
             const lvpoints = userq.level;
-            var role = "GOD✨";
+            var role = "ملك✨";
             if (lvpoints <= 2) {
-                var role = "🏳Citizen";
+                var role = "🏳حيوان منوي";
             } else if (lvpoints <= 4) {
-                var role = "👼Baby Wizard";
+                var role = "👼طفل";
             } else if (lvpoints <= 6) {
-                var role = "🧙‍♀️Wizard";
+                var role = "🧙‍♀️ساحر";
             } else if (lvpoints <= 8) {
-                var role = "🧙‍♂️Wizard Lord";
+                var role = "🧙‍♂️ساحر كبير";
             } else if (lvpoints <= 10) {
-                var role = "🧚🏻Baby Mage";
+                var role = "🧚🏻طفل مبارك";
             } else if (lvpoints <= 12) {
-                var role = "🧜Mage";
+                var role = "🧜طفل مبارك2";
             } else if (lvpoints <= 14) {
-                var role = "🧜‍♂️Master of Mage";
+                var role = "🧜‍♂️ابو المباركيين";
             } else if (lvpoints <= 16) {
                 var role = "🌬Child of Nobel";
             } else if (lvpoints <= 18) {
@@ -477,13 +477,13 @@ cmd({
             } else if (lvpoints <= 40) {
                 var role = "🔮Supreme Master";
             } else if (lvpoints <= 42) {
-                var role = "🛡Legend III";
+                var role = "🛡اسطوره 3";
             } else if (lvpoints <= 44) {
-                var role = "🏹Legend II";
+                var role = "🏹اسطوره 2";
             } else if (lvpoints <= 46) {
-                var role = "⚔Legend";
+                var role = "⚔اسطوره";
             } else if (lvpoints <= 55) {
-                var role = "🐉Immortal";
+                var role = "🐉ابدي";
             }
             let disc = citel.sender.substring(3, 7);
             let textr = '';
@@ -522,7 +522,7 @@ cmd({
 \n\n`
             for (let i = 0; i < fetchlb.length; i++) {
                 const lvpoints = fetchlb[i].level
-                var role = "GOD✨";
+                var role = "ملك✨";
                 if (lvpoints <= 2) {
                     var role = "🏳Citizen";
                 } else if (lvpoints <= 4) {
