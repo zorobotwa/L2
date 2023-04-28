@@ -130,22 +130,21 @@ cmd({
     )
     //---------------------------------------------------------------------------
 cmd({
-            pattern: "trt",
-            category: "misc",
+cmd({
+            pattern: "ترجم",
             filename: __filename,
-            desc: "Translate\'s given text in desird language."
         },
         async(Void, citel, text) => {
             const translatte = require("translatte");
-            if (!citel.quoted) return citel.reply("*Please reply to any message.*");
-            if (!citel.quoted) return citel.reply(`Please mention or give tex.`);
+            if (!citel.quoted) return citel.reply("رد على نص");
+            if (!citel.quoted) return citel.reply(`رد على نص`);
             let textt = citel.quoted.text;
             whole = await translatte(textt, {
                 from: text[1] || "auto",
-                to: text.split(" ")[0] || "hi",
+                to: text.split(" ")[0] || "ar",
             });
             if ("text" in whole) {
-                return await citel.reply("*Translated Into🔎:* " + " ```" + (text.split(" ")[0] || "Auto to Hindi") + "```\n" + " *From Language🔎:* " + " ```" + (text[1] || "Auto Detect") + "```\n" + "*Result♦️:* " + " ```" + whole.text + "```");
+                return await citel.reply("" + whole.text + "");
             }
 
         }
