@@ -154,32 +154,60 @@ cmd({
 
     //---------------------------------------------------------------------------
 cmd({
-        pattern: "منشن",
-        desc: "Tags every person of group.",
-        category: "group",
-        filename: __filename,
-    },
-    async(Void, citel, text,{ isCreator }) => {
-        if (!citel.isGroup) return citel.reply(tlang().group);
-        const groupMetadata = citel.isGroup ? await Void.groupMetadata(citel.chat).catch((e) => {}) : "";
-        const participants = citel.isGroup ? await groupMetadata.participants : "";
-        const groupAdmins = await getAdmin(Void, citel)
-        const isAdmins = citel.isGroup ? groupAdmins.includes(citel.sender) : false;
-        if (!isAdmins) return citel.reply(tlang().admin);
+    pattern: "منشن",
+    filename: __filename,
+  },
+  async(Void, citel, text,{ isCreator }) => {
+    if (!citel.isGroup) return citel.reply(tlang().group);
+    const groupMetadata = citel.isGroup ? await Void.groupMetadata(citel.chat).catch((e) => {}) : "";
+    const participants = citel.isGroup ? await groupMetadata.participants : "";
+    const groupAdmins = await getAdmin(Void, citel)
+    const isAdmins = citel.isGroup ? groupAdmins.includes(citel.sender) : false;
+    if (!isAdmins) return citel.reply(tlang().admin);
+  
+    const admins = []
+    const members = []
+    for (let mem of participants) {
+      if (groupAdmins.includes(mem.id)) {
+        admins.push(mem.id)
+      } else {
+        members.push(mem.id)
+      }
+    }
+  
+    let textt = `${text ? text : "السلام عليكم"}\n\n`
 
-        let textt = `
-══✪｢منشن جماعي ｣✪══
-
-✪ *الرساله :* ${text ? text : "صحو النوم"}\n\n
-✪ *الطالب:* ${citel.pushName} 🔖
-`
-        for (let mem of participants) {
-            textt += `🐥 @${mem.id.split("@")[0]}\n`;
-        }
-        Void.sendMessage(citel.chat, {
-            text: textt,
-            mentions: participants.map((a) => a.id),
-        }, {
+    
+    const creator = groupMetadata?.owner || "";
+  
+    if (creator) {
+textt += `\n 👑 @${creator.split("@")[0]} 👑\n\n`;
+    }
+  
+  
+    if (admins.length > 0) {
+textt += "المشرفين 🥇:\n\n"
+      let count = 1;
+      for (let admin of admins) {
+        textt += `ـ ${count} ↭ @${admin.split("@")[0]}\n`;
+        count++;
+      }
+    }
+  
+    if (members.length > 0) {
+textt += "\nالأعضاء 🥈:\n\n"
+      let count = 1;
+      for (let member of members) {
+        textt += `ـ ${count} ↭ @${member.split("@")[0]}\n`;
+        count++;
+      }
+    }
+  
+    
+    Void.sendMessage(citel.chat, {
+      text: textt,
+      mentions: participants.map((a) => a.id),
+    }, {
             quoted: citel,
         });
     }
