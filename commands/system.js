@@ -1,135 +1,51 @@
-/**
- Copyright (C) 2022.
- Licensed under the  GPL-3.0 License;
- You may not use this file except in compliance with the License.
- It is supplied in the hope that it may be useful.
- * @project_name : Secktor-Md
- * @author : SamPandey001 <https://github.com/SamPandey001>
- * @description : Secktor,A Multi-functional whatsapp bot.
- * @version 0.0.6
- **/
 
 const { addnote,cmd, sck1, delnote, allnotes, delallnote, tlang, botpic, runtime, prefix, Config } = require('../lib')
     //---------------------------------------------------------------------------
 cmd({
-            pattern: "addnote",
-            category: "owner",
-            desc: "Adds a note on db.",
+            pattern: "ملاحظة",
             filename: __filename
         },
         async(Void, citel, text,{ isCreator }) => {
             if (!isCreator) return citel.reply(tlang().owner)
-            if (!text) return citel.reply("🔍 Please provide me a valid gist url.")
+            if (!text) return citel.reply("")
             await addnote(text)
-            return citel.reply(`New note ${text} added in mongodb.`)
+            return citel.reply(`تم`)
 
         }
     )
  
     //---------------------------------------------------------------------------
-cmd({
-            pattern: "qr",
-            category: "owner",
-            filename: __filename,
-            desc: "Sends CitelsVoid Qr code to scan and get your session id."
-        },
-        async(Void, citel, text) => {
-            if (text) {
-                let h = await getBuffer(`https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${text}`)
-                await Void.sendMessage(citel.chat, { image: h })
-                return
-            }
-            let generatebutton = [{
-                buttonId: `${prefix}qr`,
-                buttonText: {
-                    displayText: 'Generate New'
-                },
-                type: 1
-            }]
-            let buttonMessaged = {
-                image: { url: 'https://secktorbot.onrender.com/' },
-                caption: `*_Scan Qr within 15 seconds_*\nYou'll get session id in your log number.`,
-                footer: ` Session`,
-                headerType: 4,
-                buttons: generatebutton,
-                contextInfo: {
-                    externalAdReply: {
-                        title: 'Secktor Session',
-                        body: 'Get you Session ID',
-                        thumbnail: log0,
-                        mediaType: 2,
-                        mediaUrl: ``,
-                        sourceUrl: ``,
-                    },
-
-                },
-
-            };
-            await Void.sendMessage(citel.chat, buttonMessaged, {
-                quoted: citel,
-
-            });
-            await sleep(20 * 1000)
-            return citel.reply('Your session is over now.')
-
-
-        }
-    )
     //---------------------------------------------------------------------------
 cmd({
-            pattern: "unban",
-            category: "misc",
+            pattern: "فك_البان",
             filename: __filename,
-            desc: "Unbans banned user (from using bot)."
         },
         async(Void, citel, text,{ isCreator }) => {
-            if (!isCreator) return citel.reply("This command is onlt for my Owner")
+            if (!isCreator) return citel.reply("هذا الأمر خاص بالمطور")
             try {
                 let users = citel.mentionedJid ? citel.mentionedJid[0] : citel.msg.contextInfo.participant || false;
-                if (!users) return citel.reply("Please mention any user.❌")
+                if (!users) return citel.reply("منشن شخص")
                 let pushnamer = Void.getName(users);
                 sck1.findOne({ id: users }).then(async(usr) => {
                     if (!usr) {
                         console.log(usr.ban)
-                        return citel.reply(`${pushnamer} is unbanned.`)
+                        return citel.reply(`${pushnamer} تم فك البان عن`)
                     } else {
                         console.log(usr.ban)
-                        if (usr.ban !== "true") return citel.reply(`${usr.name} is already unbanned.`)
+                        if (usr.ban !== "true") return citel.reply(`${pushnamer} مبند مسبقا`)
                         await sck1.updateOne({ id: users }, { ban: "false" })
-                        return citel.reply(`${usr.name} is free as a bird now`)
+                        return citel.reply(`${pushnamer} يمكنه استعمال البوت الان`)
                     }
                 })
             } catch {
-                return citel.reply("Please mention any user.❌")
+                return citel.reply("منشن شخص")
             }
 
 
         }
     )
     //---------------------------------------------------------------------------
-cmd({
-            pattern: "url",
-            category: "misc",
-            filename: __filename,
-            desc: "image to url."
-        },
-        async(Void, citel, text) => {
-            if (!citel.quoted) return citel.reply(`Pls mention me any image/video and type ${prefix + command} to upload my ${tlang().greet}`);
-            let mime = citel.quoted.mtype
-            let media = await Void.downloadAndSaveMediaMessage(citel.quoted);
-            if (/image/.test(mime)) {
-                let anu = await TelegraPh(media);
-                return citel.reply(`Here is url of your uploaded Media on Telegraph.\n\n` + util.format(anu));
-            } else if (!/image/.test(mime)) {
-                let anu = await TelegraPh(media);
-                await fs.unlinkSync(media);
-                return citel.reply(`Here is url of your uploaded Media on Telegraph.\n\n` + util.format(anu));
-            }
-            await fs.unlinkSync(media);
-        }
-    )
     //---------------------------------------------------------------------------
-cmd({
 cmd({
             pattern: "ترجم",
             filename: __filename,
@@ -150,154 +66,222 @@ cmd({
         }
     )
     //---------------------------------------------------------------------------
-cmd({
-            pattern: "shell",
-            category: "owner",
-            filename: __filename,
-            desc: "Runs command in Heroku(server) shell."
-        },
-        async(Void, citel, text,{ isCreator }) => {
-            if (!isCreator) return citel.reply(tlang().owner)
-            const { exec } = require("child_process")
-            exec(text, (err, stdout) => {
-                if (err) return citel.reply(`----${tlang().title}----\n\n` + err)
-                if (stdout) {
-                    return citel.reply(`----${tlang().title}----\n\n` + stdout)
-                }
-            })
-        }
-    )
     //---------------------------------------------------------------------------
 cmd({
-            pattern: "eval",
-            category: "owner",
+            pattern: "حذف_ملاحظة",
             filename: __filename,
-            desc: "Runs js code on node server."
-        },
-        async(Void, citel, text,{ isCreator }) => {
-            if (!isCreator) return
-            try {
-                let resultTest = eval('const a = async()=>{\n' + text + '\n}\na()');
-                if (typeof resultTest === "object")
-                    citel.reply(JSON.stringify(resultTest));
-                else citel.reply(resultTest.toString());
-            } catch (err) {
-                return  citel.reply(err.toString());
-            }
-        }
-    )
-    //---------------------------------------------------------------------------
-cmd({
-            pattern: "delnote",
-            category: "owner",
-            filename: __filename,
-            desc: "Deletes note from db."
         },
         async(Void, citel, text,{ isCreator }) => {
             const { tlang } = require('../lib/scraper')
             if (!isCreator) return citel.reply(tlang().owner)
             await delnote(text.split(" ")[0])
-             return citel.reply(`Id: ${text.split(" ")[0]}\'s note has been deleted from mongodb.`)
+             return citel.reply(`تم حذف الملاحظة رقم ${text.split(" ")[0]}\ `)
 
         }
     )
     //---------------------------------------------------------------------------
 cmd({
-            pattern: "delallnotes",
-            category: "owner",
+            pattern: "حذف_ملاحظات",
             filename: __filename,
-            desc: "Deletes all notes from db."
         },
         async(Void, citel, text, isCreator) => {
             const { tlang } = require('../lib/scraper')
             if (!isCreator) return citel.reply(tlang().owner)
             await delallnote()
-             return citel.reply(`All notes deleted from mongodb.`)
+             return citel.reply(`تم حذف جميع الملاحظات`)
 
         }
     )
     //---------------------------------------------------------------------------
 cmd({
-            pattern: "ban",
-            category: "owner",
+            pattern: "بان",
             filename: __filename,
-            desc: "Bans user from using bot."
         },
         async(Void, citel, text,{ isCreator}) => {
             if (!isCreator) return citel.reply(tlang().owner)
             try {
                 let users = citel.mentionedJid ? citel.mentionedJid[0] : citel.msg.contextInfo.participant || false;
-                if (!users) return citel.reply(`❌ Please mention any user ${tlang().greet}.`)
+                if (!users) return citel.reply(`منشن شخص`)
                 let pushnamer = Void.getName(users);
                 sck1.findOne({ id: users }).then(async(usr) => {
                     if (!usr) {
                         await new sck1({ id: users, ban: "true" }).save()
-                        return citel.reply(`_Banned ${usr.name} from Using Commands._`)
+                        return citel.reply(`تم حضر ${pushnamer} من استخدام البوت`)
                     } else {
-                        if (usr.ban == "true") return citel.reply(`${pushnamer} is already Banned from Using Commands`)
+                        if (usr.ban == "true") return citel.reply(`${pushnamer} محضور مسبقا`)
                         await sck1.updateOne({ id: users }, { ban: "true" })
-                        return citel.reply(`_Successfully Banned ${usr.name} from Using Commands._`)
+                        return citel.reply(`تم حضر ${pushnamer} من استخدام البوت`)
                     }
                 })
             } catch (e) {
                 console.log(e)
-                return citel.reply("Please mention any user.❌ ")
+                return citel.reply("منشن شخص ")
             }
 
 
         }
     )
     //---------------------------------------------------------------------------
-cmd({
-            pattern: "alive",
-            category: "general",
-            filename: __filename,
-            desc: "is bot alive??"
-        },
-        async(Void, citel, text, isAdmins) => {
-            let alivemessage = Config.ALIVE_MESSAGE || `*A bot developed by SamPandey001.*`
-            const alivtxt = `
-*هلا, ${citel.pushName},*
-_انا ادعى  ${tlang().title}._
-${alivemessage}
-
-*الاصدار:-* _0.0.6_
-*الوقت:-* _${runtime(process.uptime())}_
-*المطور:-* _${Config.ownername}_
-*الحاله:-* _${Config.BRANCH}_
-
-_اكتب ${prefix}*menu* لاظهار قائمة الاوامر._
-
-_صنع بواسطة ${Config.ownername}_
-`;
-            let aliveMessage = {
-                image: {
-                    url: await botpic(),
-                },
-                caption: alivtxt,
-                footer: tlang().footer,
-                headerType: 4,
-            };
-             return Void.sendMessage(citel.chat, aliveMessage, {
-                quoted: citel,
-            });
-
-        }
-    )
-    //---------------------------------------------------------------------------
-cmd({
-        pattern: "المذكرات",
-        category: "owner",
+    cmd({
+        pattern: "hshsvshshsvsyw",
         filename: __filename,
-        desc: "Shows list of all notes."
-    },
-    async(Void, citel, text,{ isCreator }) => {
-        const { tlang } = require('../lib')
-        if (!isCreator) return citel.reply(tlang().owner)
-        const note_store = new Array()
-        let leadtext = `جميع الملاحظات المتاحة هي:-\n\n`
-        leadtext += await allnotes()
-        return citel.reply(leadtext)
+              },
+              async(Void, citel, text, isAdmins) => {
+        const alivtxt = `
+        ⋄═──═◞🛡️ قائمة المشرفين 🛡️◟━──━⋄
+  ⧉ -منشن
+  ⧉ منشن جماعي لكل الاعضاء
+   
+  ⧉ -مخفي
+  ⧉ منشن مخفي لكل الاعضاء    
+   
+  ⧉ -ترقية
+  ⧉ ترقية عضو لمشرف 
+   
+  ⧉ -تخفيض
+  ⧉ تخفيض مشرف لعضو  
+  
+  ⧉ -طرد
+  ⧉ طرد شخص من القروب
+      
+  ⧉ -انذار
+  ⧉ اعطاء لنذار لاحد
+      
+  ⧉ -انذارات
+  ⧉ معرفة كل الانذارات
+      
+  ⧉ -حذف_انذار
+  ⧉ حذف كل انذارات الشخص
+  
+  ⧉ -شغل الاحداث 
+  ⧉ تشغيل الترحيب بالأعضاء وتوديعهم
+  
+  ⧉ -ترحيب_دخول
+  ⧉ تغير رسالة الترحيب بالأعضاء الجدد
+  
+  ⧉ -رسالة_خروج
+  ⧉ تغيير رسالة توديع المغادرين
+  
+  ⋄═──═◞🔰 قائمة العضو 🔰◟━──━⋄
+  
+  ⧉ -رابطه
+  ⧉ انشاء رابط رقم شخص  
+  
+  ⧉ -مساعدة
+  ⧉ قروب البوت للمساعدة
+  
+  ⧉ -المطور
+  ⧉ معرفة مطور البوت
+  
+  ⧉ -نرد
+  ⧉ رمي النرد 
+  
+  ⧉ -اختصار
+  ⧉ اختصار روابط
+  
+  ⧉ -ملصق
+  ⧉ تحويل صورة لملصق
+  
+  ⧉ -ملصقي
+  ⧉ ملصق بحقوقك او زرف ملصق
+  
+  ⧉ -شخص
+  ⧉ مثال : شخص غبي  
+   
+  ⧉ -عكس
+  ⧉ عكس الكلام 
+   
+  ⧉ -بنتر 
+  ⧉ البحث عن صورة من تطبيق بنتريست
+  ⧉ ملاحظة :اكتب الاسم بالانجليزي 
+   
+  ⧉ -تطقيم
+  ⧉ جلب تطقيمات  
+   
+  ⧉ -ترجم
+  ⧉ الترجمة للعربي
+      
+  ⧉ -شبيهي
+  ⧉ معرفة شبيهك ونسبة الشبه
+      
+  ⧉ -اكس_او
+  ⧉ لعبة اكس او
+      
+  ⧉ -ح
+  ⧉ سؤال واجب بصراحة
+      
+  ⧉ -س
+  ⧉ سؤال انمي
+      
+  ⧉ -هل
+  ⧉ اسال البوت عن شيئ
+      
+  ⧉ -احزر
+  ⧉ احزر من في الصورة 
+      
+  ⧉ -خلفية
+  ⧉ صور انمي بجودة فل
+      
+  ⧉ -طلب
+  ⧉ ارسال طلبية عن فكرة للمطور يضيفها
+      
+  ⧉ -كتابة 
+  ⧉ زخرفة الاسماء
+      
+  ⧉ -قطط
+  ⧉ صور قطط
+      
+  ⧉ -حيوانات
+  ⧉ صور حيوانات
+      
+  ⧉ -بوكيمون
+  ⧉ صور وحوش البوكيمون
 
-    }
-)
+  ⧉ -صفحة
+  ⧉ انشاء صفحة موقع، الصدق مدري شالفايدة بس يلا اجرب
+      
+      
+  ⋄═──═◞🏦 قائمة البنك 🏦◟━──━⋄
+      
+  ⧉ -ضف
+  ⧉ اضافة اموال لاعضاء 
+      
+  ⧉ -جرد
+  ⧉ نقص اموال الاعضاء 
+      
+  ⧉ -اموالي
+  ⧉ معرفة مقدار مالك
+      
+      
+  ⧉ مـلاحـظـة : قائمة البنك مدفوعة لذلك لن تشتغل الا لمن لديه اشتراك البنك.
+      `;
+        let aliveMessage = {
+            image: {
+      url: await botpic(),
+            },
+            caption: alivtxt,
+            footer: tlang().footer,
+            headerType: 4,
+        };
+         return Void.sendMessage(citel.chat, aliveMessage, {
+            quoted: citel,
+        });
+      
+              }
+          )
+          //---------------------------------------------------------------------------
+      cmd({
+              pattern: "ملاحظات",
+              filename: __filename,
+          },
+          async(Void, citel, text,{ isCreator }) => {
+              const { tlang } = require('../lib')
+              if (!isCreator) return citel.reply(tlang().owner)
+              const note_store = new Array()
+              let leadtext = `الملاحظات التي تم تسجيلها هي:-\n\n`
+              leadtext += await allnotes()
+              return citel.reply(leadtext)
+      
+          }
+      )
+      
