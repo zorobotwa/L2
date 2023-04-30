@@ -36,7 +36,7 @@ cmd({
     //---------------------------------------------------------------------------
 cmd({
             pattern: "ملصق",
-            alias: ["s"],
+            alias: ["s", "sticker", "ستيكر", "س"],
             desc: "Makes sticker of replied image/video.",
             category: "group",
             use: '<reply to any image/video.>',
@@ -91,7 +91,7 @@ cmd({
         citel.reply(`*❀╎رسلت لك للــخاص ${tlang().greet}*`);
         await Void.sendMessage(`${citel.sender}`, {
             image: log0,
-            caption: `*جروب دعم بوت رايزل*\n*الرابط:* https://chat.whatsapp.com/LLZLUGQiKIRCQMsw1MDMEF`,
+            caption: `*جروب دعم بوت رايزل*\n*الرابط:* https://chat.whatsapp.com/Fld2cn1jPaT6yAyPa1jjv2`,
         });
 
     }
@@ -155,6 +155,7 @@ cmd({
     //---------------------------------------------------------------------------
 cmd({
     pattern: "منشن",
+    alias: ["تاك", "tag", "tagall", "تاج"],
     filename: __filename,
   },
   async(Void, citel, text,{ isCreator }) => {
@@ -198,7 +199,7 @@ textt += "المشرفين 🥇:\n\n"
 textt += "\nالأعضاء 🥈:\n\n"
       let count = 1;
       for (let member of members) {
-        textt += `ـ ${count} ↭ @${member.split("@")[0]}\n`;
+        textt += `ـ ${count} ❐ @${member.split("@")[0]}\n`;
         count++;
       }
     }
@@ -1038,7 +1039,7 @@ cmd({ on: "text" }, async(Void, citel) => {
 ║ *واو لقد ارتفع مستواك*
 ║ *ارتفاع ملحوظ ههه⭐*
 ║ *👤الأسم*: ${citel.pushName}
-║ *🎐المستوى*: ${sck1.level}🍭
+║ *🎐المستوى*: ${sck1.level}🐥
 ║ *🛑يكسب*: ${sck1.xp} / ${Levels.xpFor(sck1.level + 1)}
 ║ *📍رولي*: *${role}*
 ║ *تمتع🥳*
