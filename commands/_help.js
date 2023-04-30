@@ -98,7 +98,7 @@ Secktor.cmd({
 ❀╎.الوقت
 *┇↜⟬ لمعرفة الساعه ⟭*
 ⌬━─━｢الدعم｣━─━⌬
-｢  https://chat.whatsapp.com/LLZLUGQiKIRCQMsw1MDMEF  ｣
+｢  https://chat.whatsapp.com/Fld2cn1jPaT6yAyPa1jjv2  ｣
 ⌬━─━｢تسليه｣━─━⌬
 ❀╎.تطقيم
 *┇↜⟬ يجلبلك تطقيمات ⟭*
@@ -166,7 +166,7 @@ Secktor.cmd({
             const { commands } = require('../lib');
             let str = `
 ╭━〘 ` +fancytext('RAIZEL-SUPPORT', 58)+ ` 〙━─⊷`
-            str += '' + `*⺀دعم قروب رايزل بوت نورتونا⺀* \nhttps://chat.whatsapp.com/LLZLUGQiKIRCQMsw1MDMEF`
+            str += '' + `*⺀دعم قروب رايزل بوت نورتونا⺀*\nhttps://chat.whatsapp.com/Fld2cn1jPaT6yAyPa1jjv2`
             return Void.sendMessage(citel.chat, { image: { url: THUMB_IMAGE }, caption: str ,footer: tlang().footer, headerType: 4 })
         }
     )
@@ -219,7 +219,7 @@ async(Void, citel, text) => {
  const { commands } = require('../lib');
  let arr = [];
         const cmd = commands.find((cmd) => cmd.pattern === (text.split(" ")[0].toLowerCase()))
-        if (!cmd) return await citel.reply("*❌No Such commands.*");
+        if (!cmd) return await citel.reply("*❌لا يوجد امر كهذا.*");
         else arr.push(`*🍁Command:* ${cmd.pattern}`);
         if (cmd.category) arr.push(`*🧩Type:* ${cmd.category}`);
         if(cmd.filename) arr.push(`✨FileName: ${cmd.filename}`)
