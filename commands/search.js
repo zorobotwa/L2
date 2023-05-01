@@ -59,29 +59,29 @@ cmd({
     )
     //---------------------------------------------------------------------------
 cmd({
-            pattern: "طقس",
+            pattern: "weather",
             category: "search",
             desc: "Sends weather info about asked place.",
             use: '<location>',
             filename: __filename,
         },
         async(Void, citel, text) => {
-            if (!text) return citel.reply("جيب الموقع يغبي");
+            if (!text) return citel.reply("Give me location.Baka!!");
             let wdata = await axios.get(
-                `https://api.openweathermap.org/data/2.5/weather?q=${text}&units=metric&appid=060a6bcfa19809c2cd4d97a212b19273&language=ar`
+                `https://api.openweathermap.org/data/2.5/weather?q=${text}&units=metric&appid=060a6bcfa19809c2cd4d97a212b19273&language=en`
             );
             let textw = "";
-            textw += `*🌟طقس الـ  ${text}*\n\n`;
-            textw += `*الطقس:-* ${wdata.data.weather[0].main}\n`;
-            textw += `*الوصف:-* ${wdata.data.weather[0].description}\n`;
-            textw += `*متوسط درجة الحراره:-* ${wdata.data.main.temp}\n`;
-            textw += `*يشعر مثل:-* ${wdata.data.main.feels_like}\n`;
-            textw += `*لضغط:-* ${wdata.data.main.pressure}\n`;
-            textw += `*الرطوبه:-* ${wdata.data.main.humidity}\n`;
-            textw += `*الرطوبه:-* ${wdata.data.wind.speed}\n`;
-            textw += `*خط العرض:-* ${wdata.data.coord.lat}\n`;
-            textw += `*خط الطول:-* ${wdata.data.coord.lon}\n`;
-            textw += `*البلد:-* ${wdata.data.sys.country}\n`;
+            textw += `*🌟Weather of  ${text}*\n\n`;
+            textw += `*Weather:-* ${wdata.data.weather[0].main}\n`;
+            textw += `*Description:-* ${wdata.data.weather[0].description}\n`;
+            textw += `*Avg Temp:-* ${wdata.data.main.temp}\n`;
+            textw += `*Feels Like:-* ${wdata.data.main.feels_like}\n`;
+            textw += `*Pressure:-* ${wdata.data.main.pressure}\n`;
+            textw += `*Humidity:-* ${wdata.data.main.humidity}\n`;
+            textw += `*Humidity:-* ${wdata.data.wind.speed}\n`;
+            textw += `*Latitude:-* ${wdata.data.coord.lat}\n`;
+            textw += `*Longitude:-* ${wdata.data.coord.lon}\n`;
+            textw += `*Country:-* ${wdata.data.sys.country}\n`;
 
             Void.sendMessage(
                 citel.chat, {
@@ -139,7 +139,7 @@ cmd({
             filename: __filename,
         },
         async(Void, citel, text) => {
-            if (!text) throw `Example : ${prefix}google Secktor Md`
+            if (!text) throw `*Example : ${prefix}google Who is Suhail Tech.*`
             let google = require('google-it')
             google({ 'query': text }).then(res => {
                 let text = `Google Search From : ${text}\n\n`
@@ -155,18 +155,19 @@ cmd({
     )
     //---------------------------------------------------------------------------
 cmd({
-            pattern: "صور",
+            pattern: "image",
+            alias: ["img" , "pic"],
             category: "search",
             desc: "Searches Image on Google",
             use: '<text>',
             filename: __filename,
         },
         async(Void, citel, text) => {
-            if (!text) return citel.reply("Provide me a query!")
-            if (!text) return reply("Hey bie please tell me for which pic you're looking");
-            let name1 = text.split("|")[0]
-            let name2 = text.split("|")[1] || `1`
-            citel.reply(`جار ارسال الصور التي تم العثور عليها`)
+            if (!text) return citel.reply("Provide me a query!\n*e.x : .image luffy*")
+ 
+            let name1 = text.split("|")[0] || `Luffy`
+            let name2 = text.split("|")[1] || `10`
+            citel.reply(`Sending images of ${name1} in chat`)
             let nn = name2
             for (let i = 0; i < nn; i++) {
 
@@ -177,7 +178,7 @@ cmd({
                         image: {
                             url: images,
                         },
-                        caption: ` `,
+                        caption: ` sᴜʜᴀɪʟ ᴛᴇᴄʜ ɪɴғᴏ \n www.youtube.com/c/SuhailTechInfo `,
                         headerType: 4,
                     };
                     Void.sendMessage(citel.chat, buttonMessage, {
@@ -189,7 +190,7 @@ cmd({
     )
     //---------------------------------------------------------------------------
 cmd({
-            pattern: "تطقيم",
+            pattern: "couplepp",
             category: "search",
             desc: "Sends two couples pics.",
             filename: __filename,
@@ -197,14 +198,14 @@ cmd({
         async(Void, citel, text) => {
             let anu = await fetchJson('https://raw.githubusercontent.com/iamriz7/kopel_/main/kopel.json')
             let random = anu[Math.floor(Math.random() * anu.length)]
-            Void.sendMessage(citel.chat, { image: { url: random.male }, caption: `للولد` }, { quoted: citel })
-            Void.sendMessage(citel.chat, { image: { url: random.female }, caption: `للبنت` }, { quoted: citel })
+            Void.sendMessage(citel.chat, { image: { url: random.male }, caption: `Couple Male` }, { quoted: citel })
+            Void.sendMessage(citel.chat, { image: { url: random.female }, caption: `Couple Female` }, { quoted: citel })
         }
     )
     //---------------------------------------------------------------------------
 cmd({
         pattern: "iswa",
-        alias: ["nowa","oldwa","بايو","onwa"],
+        alias: ["nowa","oldwa","bio","onwa"],
         category: "search",
         desc: "Searches in given rage about given number.",
         use: '9112345678xx',
@@ -229,8 +230,8 @@ cmd({
         } else if (random_length == 3) {
             randomxx = 1000
         }
-        var text = `*--『 جميع ارقام واتساب 』--*\n\n`
-        var nobio = `\n*البايو:* || \nHey there! I am using WhatsApp.\n`
+        var text = `*--『 List of Whatsapp Numbers 』--*\n\n`
+        var nobio = `\n*Bio:* || \nHey there! I am using WhatsApp.\n`
         var nowhatsapp = `\n*Numbers with no WhatsApp account within provided range.*\n`
         for (let i = 0; i < randomxx; i++) {
             var nu = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -259,15 +260,7 @@ cmd({
                 if (anu1 == '401' || anu1.status.length == 0) {
                     nobio += `wa.me/${anu[0].jid.split("@")[0]}\n`
                 } else {
-                    text += `🧐 *الرقم:* wa.me/${anu[0].jid.split("@")[0]}\n ✨*البايو :* ${anu1.status}\n🍁*التحديث :* ${moment(anu1.setAt).tz('Asia/Kolkata').format('HH:mm:ss DD/MM/YYYY')}\n\n`
-                }
-            } catch {
-                    var anu1 = '401'
-                }
-                if (anu1 == '401' || anu1.status.length == 0) {
-                    nobio += `wa.me/${anu[0].jid.split("@")[0]}\n`
-                } else {
-                    text += `🧐 *الرقم:* wa.me/${anu[0].jid.split("@")[0]}\n ✨*البايو :* ${anu1.status}\n🍁*التحديث :* ${moment(anu1.setAt).tz('Asia/Kolkata').format('HH:mm:ss DD/MM/YYYY')}\n\n`
+                    text += `🧐 *Number:* wa.me/${anu[0].jid.split("@")[0]}\n ✨*Bio :* ${anu1.status}\n🍁*Last update :* ${moment(anu1.setAt).tz('Asia/Kolkata').format('HH:mm:ss DD/MM/YYYY')}\n\n`
                 }
             } catch {
                 nowhatsapp += `${number0}${i}${number1}\n`
