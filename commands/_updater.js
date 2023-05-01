@@ -1,5 +1,5 @@
 /**
- Copyright (C) 2022.
+  (C) 2022.
  Licensed under the  GPL-3.0 License;
  You may not use this file except in compliance with the License.
  It is supplied in the hope that it may be useful.
@@ -20,15 +20,15 @@ cmd({
             filename: __filename
         },
         async(Void, citel, text,{ isCreator }) => {
-            if (!isCreator) return citel.reply('للمالك فقط')
+            if (!isCreator) return citel.reply('للمطور')
             let commits = await DB.syncgit()
             if (commits.total === 0) {
-                citel.reply(`هلا ${citel.pushName}. انت تستخدم احدث نسخه من البوت.`)
+                citel.reply(`هلا ${citel.pushName}. انت تستخدم احدث نسخه.`)
             } else {
                 let update = await DB.sync()
                   let buttonMessaged = {
                     text: update,
-                    footer: 'UPDATER',
+                    footer: 'تحديث',
                     headerType: 4
                 };
                 return await Void.sendMessage(citel.chat, buttonMessaged);
