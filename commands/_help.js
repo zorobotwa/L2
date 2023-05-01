@@ -31,7 +31,7 @@ Secktor.cmd({
             if (text.split(" ")[0]) {
                 let arr = [];
                 const cmd = commands.find((cmd) => cmd.pattern === (text.split(" ")[0].toLowerCase()))
-                if (!cmd) return await citel.reply("*❌No Such commands.*");
+                if (!cmd) return await citel.reply("*❌لا يوجد.*");
                 else arr.push(`*🍁Command:* ${cmd.pattern}`);
                 if (cmd.category) arr.push(`*🧩Category:* ${cmd.category}`);
                 if (cmd.alias) arr.push(`*🧩Alias:* ${cmd.alias}`);
@@ -116,6 +116,8 @@ Secktor.cmd({
 *┇↜⟬ يعطيك خلفيات عشوائيه ⟭*
 ❀╎.شبيهي
 *┇↜⟬ يجيبلك شبيهك ⟭*
+❀╎.شخص
+*┇↜⟬ شخص غبي زي كذا  ⟭*
 ❀╎.س
 *┇↜⟬ يعطيك سؤال ⟭*
 ❀╎.ح
