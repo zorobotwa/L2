@@ -52,7 +52,7 @@ Secktor.cmd({
                     .locale('id')
                 const date = moment.tz('asia/karachi').format('DD/MM/YYYY')
                 let total = await sck1.countDocuments()
-                let str = `*⺀اوامر بوت رايزل⺀*
+                let str = `*⺀اوامربوت رايزل⺀*
 ⌬━─━｢المشرفين｣━─━⌬
 ❀╎.منشن
 *┇↜⟬ لعمل منشن جماعي ⟭*
